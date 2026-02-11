@@ -1,24 +1,39 @@
-# README
+# Shopping Cart
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Rails 8.1 application with a Vue 3 frontend powered by Vite.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby 3.4.7
+- Node.js (for Vite and npm packages)
+- SQLite3
 
-* System dependencies
+## Setup
 
-* Configuration
+Clone the repo, then install dependencies and prepare the database:
 
-* Database creation
+```bash
+bundle install
+npm install
+bin/rails db:prepare
+```
 
-* Database initialization
+Or use the setup script which does all of the above and starts the server:
 
-* How to run the test suite
+```bash
+bin/setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Running the app
 
-* Deployment instructions
+```bash
+bin/dev
+```
 
-* ...
+This starts both the Rails server (http://localhost:3000) and the Vite dev server (port 3036) via foreman.
+
+## Tests
+
+```bash
+bundle exec rspec
+```
