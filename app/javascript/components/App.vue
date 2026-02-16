@@ -1,14 +1,21 @@
 <template>
   <div>
-    <h1>{{ greeting }}</h1>
-    <p>Count: {{ count }}</p>
-    <button @click="count++">Increment</button>
+    <h1>Users</h1>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        {{ user.id }} — {{ user.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const greeting = ref('Hello from Vue + Vite + Rails!')
-const count = ref(0)
+const users = ref([])
+
+onMounted(async () => {
+  const response = await fetch('/users.json')
+  users.value = await response.json()
+})
 </script>
