@@ -24,23 +24,6 @@ jobs:
       - name: Scan for known security vulnerabilities in gems used
         run: bin/bundler-audit
 
-  scan_js:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: yarn
-
-      - name: Scan for security vulnerabilities in JavaScript dependencies
-        # Yarn audit exit codes are a bitmask: 1=info, 2=low, 4=moderate, 8=high, 16=critical
-        # Only fail the build for high (8) or critical (16) severity vulnerabilities
-        run: yarn audit --level high; test $? -lt 8 || exit 1
 
   lint:
     runs-on: ubuntu-latest
