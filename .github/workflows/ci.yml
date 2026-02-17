@@ -38,7 +38,7 @@ jobs:
           cache: yarn
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: yarn audit
+        run: yarn audit --level high
 
   lint:
     runs-on: ubuntu-latest
