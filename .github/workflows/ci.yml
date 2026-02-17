@@ -38,7 +38,9 @@ jobs:
           cache: yarn
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: yarn audit --level high
+        # Yarn audit exit codes are a bitmask: 1=info, 2=low, 4=moderate, 8=high, 16=critical
+        # Only fail the build for high (8) or critical (16) severity vulnerabilities
+        run: yarn audit --level high; test $? -lt 8 || exit 1
 
   lint:
     runs-on: ubuntu-latest
